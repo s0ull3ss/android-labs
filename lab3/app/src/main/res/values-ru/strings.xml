@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">лаб3</string>
     <string name="enter_name">Введите имя</string>
-    <string name="button">OK</string>
+    <string name="button">Сделать фото</string>
     <string name="fill_field">Заполните пустое поле</string>
     <string name="error_create_file_photo">Ошибка при создании файла фотографии</string>
 </resources>
