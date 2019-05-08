@@ -27,6 +27,7 @@ class ImageActivity : AppCompatActivity() {
 
         setPhoto()
     }
+
     private fun setPhoto() {
         Log.d(this.javaClass.simpleName, "setPhoto")
         var bitmap: Bitmap = BitmapFactory.decodeFile(photoPath)
@@ -35,7 +36,9 @@ class ImageActivity : AppCompatActivity() {
             val matrix = Matrix()
             val rotation: Int = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
             val rotationInDegrees: Int = exifToDegrees(rotation)
-            if (rotation != 0) {matrix.preRotate(rotationInDegrees.toFloat())}
+            if (rotation != 0) {
+                matrix.preRotate(rotationInDegrees.toFloat())
+            }
             bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
             Log.d(this.javaClass.simpleName, "after created bitmap")
         } catch (ex: IOException) {

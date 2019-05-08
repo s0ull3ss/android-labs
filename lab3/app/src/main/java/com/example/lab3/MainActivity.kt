@@ -34,10 +34,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d(this.javaClass.simpleName,"onCreate")
+        Log.d(this.javaClass.simpleName, "onCreate")
         button.setOnClickListener { v ->
             if (editText.text.isEmpty()) {
-                Snackbar.make(v, "Заполните поле именем", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(v, R.string.fill_field, Snackbar.LENGTH_LONG).show()
             } else {
                 name = editText.text.toString()
                 Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                         val photoFile: File? = try {
                             createImageFile()
                         } catch (ex: IOException) {
-                            Snackbar.make(v, "Ошибка при создании файла фотографии", Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(v, R.string.error_create_file_photo, Snackbar.LENGTH_LONG).show()
                             null
                         }
 
@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
             ".jpg",
             storageDir
         ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
             currentPhotoPath = absolutePath
         }
     }
@@ -99,8 +98,7 @@ class MainActivity : AppCompatActivity() {
 //            intent_activity.putExtra(ImageActivity.IMAGE_KEY, currentPhotoPath)
 //            intent_activity.putExtra(ImageActivity.NAME_KEY, name)
 //            startActivity(intent_activity)
-        }
-        else if (resultCode != Activity.RESULT_OK){
+        } else if (resultCode != Activity.RESULT_OK) {
             Log.d(this.javaClass.simpleName, "result code != ok")
         }
         super.onActivityResult(requestCode, resultCode, data)
